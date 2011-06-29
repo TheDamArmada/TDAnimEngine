@@ -116,7 +116,7 @@ On the implementation, overwrite *executeEvent*  method:
 	
 So, when you play the animation "walk" and the playhead gets to frame 1 and 22, your character will move the right by 100px. It will move 20px when the playhead hits the frame number 10.
 
-Take a look at the example. It includes the Maya files, the required pngs and the XCode project.
+Take a look at the example. It includes the Maya files, the TBXML library, the required pngs and the XCode project.
 
 We will add more tutorials as we can.
 
