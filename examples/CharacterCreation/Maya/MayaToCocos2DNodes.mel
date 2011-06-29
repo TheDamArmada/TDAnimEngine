@@ -1,0 +1,139 @@
+// MayaToCocos2DNodes.mel
+// The Dam Armada 2011
+//
+// thanks to:
+// http://xyz2.net/mel/
+
+string $master = "Body";
+
+
+string $sel[] = `ls -selection`;
+
+
+
+
+// Master position
+float $originalPos[] = `xform -ws -q -t ($master)`;
+
+
+string $children[] = `ls -selection`;
+
+print ("<root>\n<nodesConfig>\n");
+
+
+$mat = getSurfaceShader($master);
+
+$fileText = getTextureFromMaterial($mat);
+
+$fileName = filepart(`getAttr ($fileText+".fileTextureName")`);
+
+			
+float $width = `getAttr ($fileText+".outSizeX")`/100;
+float $height = `getAttr ($fileText+".outSizeY")`/100;
+
+float $ppoint[] = `xform -q -t ($master+".rotatePivot")`;
+float $px = $ppoint[0];
+float $py = $ppoint[1];
+
+float $apX = ($width/2+$px)/$width;
+float $apY = ($height/2+$py)/$height;
+float $rot[] = `getAttr ($master+".r")`;
+float $scl[] = `getAttr ($master+".s")`;
+
+print ("\t<node id='"+$master+"' parent='root' x='"+$originalPos[0]+"' y='"+$originalPos[1]+"' image='"+$fileName+"' apx='"+$apX+"' apy='"+$apY+"' rz='"+$rot[2]+"' sx='"+$scl[0]+"' sy='"+$scl[1]+"' w='"+$width+"' h='"+$height+"' />\n");
+
+$parentnode = $master;
+
+for ($o = 0; $o < `size $children`; $o++)
+{
+    if ($children[$o] != $master)
+    {
+
+		// -------------------------------------------------------------		
+		// GET POSITION
+		
+        string $parent[] = `listRelatives -p ($children[$o])`;
+		float $pos[]  = `getAttr ($children[$o]+".t")`;
+		float $rot[] = `getAttr ($children[$o]+".r")`;
+		float $scl[] = `getAttr ($children[$o]+".s")`;
+
+		
+		// -------------------------------------------------------------
+		// GET ANCHOR POINT
+		
+/*        float $ppoint[] = `xform -q -t ($children[$o]+".rotatePivot")`;
+        float $px = $ppoint[0];
+        float $py = $ppoint[1];
+  */
+        float $ppoint[] = `xform -q -ws -t ($children[$o]+".rotatePivot")`;
+        float $px = $ppoint[0];
+        float $py = $ppoint[1];
+
+
+        $mat = getSurfaceShader($children[$o]);
+
+		$fileText = getTextureFromMaterial($mat);
+
+		$fileName = filepart(`getAttr ($fileText+".fileTextureName")`);
+		
+
+
+		//print ("\n"+$children[$o]+"\n"+$px + "\n" + $py);
+		// -------------------------------------------------------------		
+		// OUTPUT
+		
+        print ("\t<node id='"+$children[$o]+"' parent='"+$parent[0]+"' image='"+$fileName+"' x='"+$pos[0]+"' y='"+$pos[1]+"' z='"+$pos[2]+"' rz='"+$rot[2]+"' sx='"+$scl[0]+"' sy='"+$scl[2]+"' apx='"+$px+"' apy='"+$py+"' />\n");
+    }
+}
+print ("</nodesConfig>\n</root>");
+
+
+
+// HELPER METHODS -------------------------------------------------------------------
+
+proc string getSurfaceShader (string $objName) 
+{
+
+	string $myShapeNode[] = `listRelatives -children -shapes $objName`;
+	string $mySGs[] = `listConnections -type shadingEngine $myShapeNode[0]`;
+	string $surfaceShader[] = `listConnections ($mySGs[0] + ".surfaceShader")`;
+	return $surfaceShader[0];
+}
+
+
+proc string rootNode( string $object ) 
+{
+
+  string $buffer[];
+  tokenize $object "." $buffer;
+  return $buffer[0];
+}
+
+
+
+proc string getTextureFromMaterial( string $material )
+{
+
+  string $texture = "";
+  string $class[] = getClassification( `nodeType $material` );
+  if ( "shader/surface" == $class[0] && `connectionInfo -id
+       ( $material + ".color" )` )
+  {
+    $texture = rootNode( `connectionInfo -sfd ( $material + ".color" )` );
+  }
+  return $texture;
+}
+
+
+global proc string filepart( string $path )
+// Extracts the path portion of an absolute filepath.
+// Input: e.g. "D:/projects/default/scenes/myScene.mb"
+// Result: e.g. "myScene.mb"
+//
+// Filepath can be delimited with
+// either slash ("/" or "\")
+{
+  string $filepart = match( "[^/\\]*$", $path );
+
+  return $filepart;
+};

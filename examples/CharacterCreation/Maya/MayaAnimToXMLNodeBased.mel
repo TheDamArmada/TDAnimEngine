@@ -1,0 +1,53 @@
+string $_animations[] = {"walk", "walk_stop", "stop_walk"};
+int $_animationsFramesInit[]  = {1, 30, 35};
+int $_animationsFramesEnd[]   = {26, 35, 40};
+
+// a lot of this script I got it from:
+// http://xyz2.net/mel/
+
+
+string $sel[] = `ls -selection`;
+
+
+string $master = "Shell";
+
+string $attrList[] = {"rz"};
+
+
+print("<root>\n<animations>\n");
+
+for ($a=0; $a<`size $_animations`; $a++)
+{
+    print ("\t<animation id='"+$_animations[$a]+"'>\n");
+    print ("\t\t<nodes>\n");
+    for ($o=0; $o<`size $sel`; $o++)
+    {         
+        print ("\t\t\t<node id='"+$sel[$o]+"'>\n");
+        float $keyedframes[] = `keyframe -time ($_animationsFramesInit[$a]+":"+$_animationsFramesEnd[$a]) -query -timeChange ($sel[$o]+"."+$attrList[0])`;
+        float $keyedvalues[] = `keyframe -time ($_animationsFramesInit[$a]+":"+$_animationsFramesEnd[$a]) -query -valueChange ($sel[$o]+"."+$attrList[0])`;
+        for ($k=0; $k<`size $keyedframes`; $k++) {
+            // for each frame...
+            int $frame = ($keyedframes[$k] - $_animationsFramesInit[$a]);
+            if ($_animationsFramesInit[$a]>1) {
+               if ($frame==0) $frame = 1;
+            } else {
+                $frame += 1;
+            }
+            // go through attrs list
+            print ("\t\t\t\t<frame id='"+$frame+"'>\n");
+            print ("\t\t\t\t\t<transform attr='"+$attrList[0]+"' value='"+$keyedvalues[$k]+"' />\n");
+            print ("\t\t\t\t</frame>\n");
+       }
+       print ("\t\t\t</node>\n");
+
+    }
+    print ("\t\t</nodes>\n"); 
+    print ("\t</animation>\n");
+} 
+
+print("</animations>\n</root>");
+
+
+
+
+

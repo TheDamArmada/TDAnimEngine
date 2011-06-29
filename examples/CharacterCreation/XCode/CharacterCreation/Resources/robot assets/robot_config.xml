@@ -1,0 +1,18 @@
+<root>
+    <nodesConfig>
+        <node id='Body' parent='root' x='0' y='0' image='body.png' apx='0' apy='0' rz='0' sx='1' sy='1' w='0.76' h='1.14' />
+        <node id='NeckBottom' parent='Body' image='neck_bottom.png' x='0.04042905411' y='0.6312896929' z='0.1745839467' rz='-34.42265455' sx='1' sy='1' apx='0.04042905411' apy='0.4650724887' />
+        <node id='NeckTop' parent='NeckBottom' image='neck_top.png' x='-0.02315703327' y='0.3999925865' z='0.1442577536' rz='-31.5291547' sx='1' sy='1' apx='0.03574059908' apy='0.8281279188' />
+        <node id='Head' parent='NeckTop' image='head.png' x='0.4899874216' y='0.3252030751' z='0.1629508483' rz='66.17571937' sx='1' sy='1' apx='0.05949597535' apy='1.21358212' />
+        <node id='ShoulderR' parent='Body' image='shoulder.png' x='-0.1364253491' y='0.3333697451' z='0.4704428822' rz='0' sx='1' sy='1' apx='-0.1364253491' apy='0.3333697451' />
+        <node id='ArmR' parent='ShoulderR' image='armleg_piece.png' x='-0.08557762169' y='0.1456084906' z='-0.04702503227' rz='147.1842096' sx='1' sy='1' apx='-0.2220029707' apy='0.2641679823' />
+        <node id='ForeArmR' parent='ArmR' image='armleg_piece.png' x='0.007790254018' y='-0.03613810375' z='0.1041268572' rz='-160.7287632' sx='1' sy='1' apx='-0.2189761579' apy='0.7329546394' />
+        <node id='HandR' parent='ForeArmR' image='hand.png' x='-0.004354380302' y='-0.4351409324' z='0.1163934631' rz='0' sx='1' sy='1' apx='-0.2376208616' apy='0.1696561984' />
+        <node id='Leg' parent='Body' image='armleg_piece.png' x='0.01391410991' y='-0.6963381766' z='0.1041268572' rz='0' sx='1' sy='1' apx='0.01391410991' apy='-0.91114843' />
+        <node id='Wheel' parent='Leg' image='wheel.png' x='-0.00799479242' y='-0.2508880414' z='-0.1041268572' rz='0' sx='1' sy='1' apx='0.00591931749' apy='-0.947226218' />
+        <node id='ShoulderL' parent='Body' image='shoulder.png' x='0.160143047' y='0.3721485815' z='-0.2416504636' rz='1.4164704' sx='1' sy='1' apx='0.160143047' apy='0.3721485815' />
+        <node id='ArmL' parent='ShoulderL' image='armleg_piece.png' x='0.06090663916' y='0.1311154676' z='0.1041268572' rz='-150.4239407' sx='1' sy='1' apx='0.2210496862' apy='0.2884537956' />
+        <node id='ForeArmL' parent='ArmL' image='armleg_piece.png' x='-0.01008082362' y='-0.01952848664' z='0.1041268572' rz='-193.3768931' sx='1' sy='1' apx='0.2109688626' apy='0.7690866286' />
+        <node id='HandL' parent='ForeArmL' image='hand.png' x='-0.0001633561183' y='-0.4015010044' z='0' rz='0' sx='1' sy='1' apx='0.1917517419' apy='0.2441915568' />
+    </nodesConfig>
+</root>
