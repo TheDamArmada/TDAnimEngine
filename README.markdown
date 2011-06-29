@@ -24,7 +24,7 @@ What you can do:
 # Dependencies: #
 
 **TBXML** is needed to parse the generated XML files.  
-Ge it here: [TBXML](https://github.com/Tpbradley/TBXML)
+Get it here: [TBXML](https://github.com/Tpbradley/TBXML)
 
   
 # General Usage #
