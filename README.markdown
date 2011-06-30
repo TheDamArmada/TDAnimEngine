@@ -33,7 +33,7 @@ Get it here: [TBXML](https://github.com/Tpbradley/TBXML)
 
 ***MayaToCocos2DNodes.mel***: use this script on a Maya model (made out of polygonal planes) to generate an XML that will contain all the necessary information to recreate it on Cocos2D. Use a 1/100 ratio to recreate the different pieces (ie: if an image it's 200x200 pixels, in Maya you should create a plane 0.2 x 0.2).
   
-Please visit the **[tutorial](http://fbgpc.thedamarmada.com/)** for a detail explanation on how to use this script.
+Please visit the **[tutorial](http://fbgpc.thedamarmada.com/2011/06/maya-to-cocos2d/)** for a detail explanation on how to use this script.
 
 ***MayaAnimToXMLNodeBased.mel***: use this script to, having a model in Maya, create a rotation based animation (or Direct Kinematics) and export it as XML so it can be used on Cocos2D. So far, we've worked out just rotations. In a future we might support translation and scales.
 
