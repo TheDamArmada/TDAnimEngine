@@ -9,7 +9,7 @@ int $_animationsFramesEnd[]   = {26, 35, 40};
 string $sel[] = `ls -selection`;
 
 
-string $master = "Shell";
+string $master = "ROOT";
 
 string $attrList[] = {"rz"};
 

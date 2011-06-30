@@ -56,9 +56,8 @@
 
 
 -(void) createCharacterAnimationsFromXML:(NSString *)_xmlStr;
-// LOOP
 
--(void) tick:(ccTime)_timeDif;
+// LOOP
 
 -(void) debug;
 -(void) drawRectangle:(CCSprite *)_sprite;

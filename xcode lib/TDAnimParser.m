@@ -179,31 +179,9 @@
 
         TBXMLElement *_configNode = [TBXML childElementNamed:@"node" parentElement:_configNodesList];
         
-        NSString *parentId = @"";
-        NSString *nodeName = @"";
-        NSString *imageName = @"";
-        float _width;
-        float _height;
-        
-        // FIND THE ROOT NODE
-        
 
-        while ([parentId isEqualToString:@"root"]==NO) {
-        
-            nodeName    = [TBXML valueOfAttributeNamed:@"id" forElement:_configNode];
-            parentId    = [TBXML valueOfAttributeNamed:@"parent" forElement:_configNode];
-            _width      = [[TBXML valueOfAttributeNamed:@"w" forElement:_configNode] floatValue];
-            _height     = [[TBXML valueOfAttributeNamed:@"h" forElement:_configNode] floatValue];
-            imageName   = [TBXML valueOfAttributeNamed:@"image" forElement:_configNode];            
-            _configNode = [TBXML nextSiblingNamed:@"node" searchFromElement:_configNode];            
-        }
-        
-        
-        CCSprite *__rootSp = [CCSprite spriteWithFile:imageName];
-        CGSize sprSize = [__rootSp contentSize];
-        float sprW = sprSize.width;
                 
-        RATIO = fabsf(_width/sprW);
+        RATIO = 0.01;
 
         
         _configNode = [TBXML childElementNamed:@"node" parentElement:_configNodesList];
@@ -337,9 +315,11 @@
     useSpriteSheet = YES;
     
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[NSString stringWithFormat:@"%@.plist", _atlasInfo]];
+    
     CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", _atlasInfo]];
     [_character addChild:spriteSheet];
-        
+    
+    
     return [self parseXML:_fileStr toCharacter:_character];
 }
 

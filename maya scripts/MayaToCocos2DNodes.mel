@@ -4,29 +4,21 @@
 // thanks to:
 // http://xyz2.net/mel/
 
-string $master = "Body";
+string $master = "ROOT";
 
 
 string $sel[] = `ls -selection`;
 
-
-
-
-// Master position
 float $originalPos[] = `xform -ws -q -t ($master)`;
 
 
-string $children[] = `ls -selection`;
-
 print ("<root>\n<nodesConfig>\n");
-
 
 $mat = getSurfaceShader($master);
 
 $fileText = getTextureFromMaterial($mat);
 
 $fileName = filepart(`getAttr ($fileText+".fileTextureName")`);
-
 			
 float $width = `getAttr ($fileText+".outSizeX")`/100;
 float $height = `getAttr ($fileText+".outSizeY")`/100;
@@ -41,6 +33,9 @@ float $rot[] = `getAttr ($master+".r")`;
 float $scl[] = `getAttr ($master+".s")`;
 
 print ("\t<node id='"+$master+"' parent='root' x='"+$originalPos[0]+"' y='"+$originalPos[1]+"' image='"+$fileName+"' apx='"+$apX+"' apy='"+$apY+"' rz='"+$rot[2]+"' sx='"+$scl[0]+"' sy='"+$scl[1]+"' w='"+$width+"' h='"+$height+"' />\n");
+
+
+string $children[] = `ls -selection`;
 
 $parentnode = $master;
 
@@ -61,10 +56,6 @@ for ($o = 0; $o < `size $children`; $o++)
 		// -------------------------------------------------------------
 		// GET ANCHOR POINT
 		
-/*        float $ppoint[] = `xform -q -t ($children[$o]+".rotatePivot")`;
-        float $px = $ppoint[0];
-        float $py = $ppoint[1];
-  */
         float $ppoint[] = `xform -q -ws -t ($children[$o]+".rotatePivot")`;
         float $px = $ppoint[0];
         float $py = $ppoint[1];
@@ -77,8 +68,6 @@ for ($o = 0; $o < `size $children`; $o++)
 		$fileName = filepart(`getAttr ($fileText+".fileTextureName")`);
 		
 
-
-		//print ("\n"+$children[$o]+"\n"+$px + "\n" + $py);
 		// -------------------------------------------------------------		
 		// OUTPUT
 		
@@ -126,12 +115,6 @@ proc string getTextureFromMaterial( string $material )
 
 
 global proc string filepart( string $path )
-// Extracts the path portion of an absolute filepath.
-// Input: e.g. "D:/projects/default/scenes/myScene.mb"
-// Result: e.g. "myScene.mb"
-//
-// Filepath can be delimited with
-// either slash ("/" or "\")
 {
   string $filepart = match( "[^/\\]*$", $path );
 

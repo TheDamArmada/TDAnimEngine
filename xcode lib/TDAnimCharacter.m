@@ -102,11 +102,12 @@
 }
 // LOOP
 
--(void) tick:(ccTime)_timeDif
+-(void) update: (ccTime) dt
 {
-    [self debug];
+ 
+ //   [self debug];
     
-    time    += _timeDif;
+    time    += dt;
     
     currentFrame = (int)(time/FPS) % currentAnimLength;
     
@@ -152,7 +153,8 @@
             
         } else {
             
-            if (currentAnimLoopable == NO) {
+            
+            if (!currentAnimLoopable) {
                 
                 [self stopAnimation];
                 
@@ -160,12 +162,12 @@
             
         }
     }    
-
 }
 
 
 -(void) stopAnimation
 {
+
     if (!isRunning) return;
     
     // delegate animationStopped
@@ -173,7 +175,7 @@
         [delegate characterAnimationStopped];
     
     isRunning= NO;    
-    [self unschedule:@selector(tick:)];
+    [self unscheduleUpdate];
 }
 
 
@@ -252,7 +254,7 @@
     if (isRunning == NO) 
     {
         isRunning = YES;
-        [self schedule:@selector(tick:)];        
+        [self scheduleUpdate];
     }
 }
 
