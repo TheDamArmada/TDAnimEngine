@@ -37,7 +37,7 @@ Please visit the **[tutorial](http://fbgpc.thedamarmada.com/2011/06/maya-to-coco
 
 ***MayaAnimToXMLNodeBased.mel***: use this script to, having a model in Maya, create a rotation based animation (or Direct Kinematics) and export it as XML so it can be used on Cocos2D. So far, we've worked out just rotations. In a future we might support translation and scales.
 
-*(Tutorial in process)*
+Please visit the **[tutorial](http://fbgpc.thedamarmada.com/2011/07/maya-to-cocos2d-part-22/)** for a detail explanation on how to use this script.
 
 ##TDAnimEngine Lib##
 
