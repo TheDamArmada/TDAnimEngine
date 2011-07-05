@@ -1,0 +1,93 @@
+<root>
+    <animations>
+        <animation id='waving'>
+            <nodes>
+                <node id='Body'>
+                </node>
+                <node id='NeckBottom'>
+                </node>
+                <node id='NeckTop'>
+                </node>
+                <node id='Head'>
+                </node>
+                <node id='ShoulderR'>
+                    <frame id='1'>
+                        <transform attr='rz' value='0' />
+                    </frame>
+                    <frame id='8'>
+                        <transform attr='rz' value='-130.7408429' />
+                    </frame>
+                    <frame id='14'>
+                        <transform attr='rz' value='-119.8937096' />
+                    </frame>
+                    <frame id='18'>
+                        <transform attr='rz' value='-130.7408429' />
+                    </frame>
+                    <frame id='24'>
+                        <transform attr='rz' value='0' />
+                    </frame>
+                </node>
+                <node id='ArmR'>
+                    <frame id='1'>
+                        <transform attr='rz' value='147.1842096' />
+                    </frame>
+                    <frame id='8'>
+                        <transform attr='rz' value='147.1842096' />
+                    </frame>
+                    <frame id='18'>
+                        <transform attr='rz' value='147.1842096' />
+                    </frame>
+                    <frame id='24'>
+                        <transform attr='rz' value='147.1842096' />
+                    </frame>
+                </node>
+                <node id='ForeArmR'>
+                    <frame id='1'>
+                        <transform attr='rz' value='-160.7287632' />
+                    </frame>
+                    <frame id='8'>
+                        <transform attr='rz' value='-219.7303965' />
+                    </frame>
+                    <frame id='18'>
+                        <transform attr='rz' value='-219.7303965' />
+                    </frame>
+                    <frame id='24'>
+                        <transform attr='rz' value='-160.7287632' />
+                    </frame>
+                </node>
+                <node id='HandR'>
+                    <frame id='1'>
+                        <transform attr='rz' value='0' />
+                    </frame>
+                    <frame id='8'>
+                        <transform attr='rz' value='-22.01977852' />
+                    </frame>
+                    <frame id='12'>
+                        <transform attr='rz' value='-49.52920691' />
+                    </frame>
+                    <frame id='16'>
+                        <transform attr='rz' value='39.74836549' />
+                    </frame>
+                    <frame id='18'>
+                        <transform attr='rz' value='-22.01977852' />
+                    </frame>
+                    <frame id='24'>
+                        <transform attr='rz' value='0' />
+                    </frame>
+                </node>
+                <node id='Leg'>
+                </node>
+                <node id='Wheel'>
+                </node>
+                <node id='ShoulderL'>
+                </node>
+                <node id='ArmL'>
+                </node>
+                <node id='ForeArmL'>
+                </node>
+                <node id='HandL'>
+                </node>
+            </nodes>
+        </animation>
+    </animations>
+</root>
